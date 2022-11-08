@@ -107,6 +107,9 @@ tag="${SYSNAME:-`uname`}-${CC9:-cc}"
 case "$tag" in
 *DragonFly*gcc*|*BSD*gcc*)	usegcc ;;
 *DragonFly*clang|*BSD*clang*)	useclang ;;
+*Cygwin*|*CYGWIN*)
+		usegcc
+		;;
 *Darwin*)
 		useclang
 		cflags="$cflags -g3 -m64"

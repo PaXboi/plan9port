@@ -24,7 +24,7 @@ case "$tag" in
 	extralibs="$extralibs -lutil"
 	nmflags="-B"
 	;;
-*Linux*)
+*Linux*|*Cygwin*)
 	ld="${CC9:-gcc} $CC9FLAGS"
 	userpath=true
 	extralibs="$extralibs -lutil -lresolv -lpthread"
@@ -113,7 +113,8 @@ then
 		a=`
 			nm $nmflags $ofiles |
 			grep '__p9l_autolib_[a-zA-Z0-9+-]*' |
-			sed 's/.*__p9l_autolib_//; s/:.*//' |
+			sed '/weak/d' |
+			sed 's/.*__p9l_autolib_//; s/:.*//;' |
 			sort -u
 		`
 		for i in $a
@@ -144,7 +145,8 @@ then
 				b=`
 					nm $lpath/lib$i.a 2>/dev/null |
 					grep '__p9l_autolib_[a-zA-Z0-9+-]*' |
-					sed 's/.*__p9l_autolib_//; s/:.*//' |
+					sed '/weak/d' |
+					sed 's/.*__p9l_autolib_//; s/:.*//;' |
 					sort -u |
 					egrep -v '^(thread|draw)$'
 				`
@@ -280,6 +282,7 @@ then
 	then
 		a=`
 			nm $ofiles |
+			sed '/weak/d' |
 			grep '__p9l_autoframework_[a-zA-Z0-9+-]*$' |
 			sed 's/.*__p9l_autoframework_//' |
 			sort -u

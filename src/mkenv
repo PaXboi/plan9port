@@ -1,7 +1,7 @@
 # This file must be valid mk input for mkhdr
 # and also valid shell input for ../dist/buildmk
 
-SYSNAME=`uname`
+SYSNAME=`uname -o`
 # OBJTYPE=`(uname -m -p 2>/dev/null || uname -m) | sed '
 # 	s;.*i[3-6]86.*;386;;
 # 	s;.*i86pc.*;386;;

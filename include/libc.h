@@ -19,6 +19,8 @@ extern "C" {
 /*
  * Begin usual libc.h
  */
+#undef sigsetjmp
+#undef siglongjmp
 
 #ifndef nil
 #define	nil	((void*)0)

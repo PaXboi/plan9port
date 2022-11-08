@@ -1,5 +1,9 @@
+#define strlwr strlwr_guard
+
 #include "std.h"
 #include "dat.h"
+
+#undef strlwr
 
 /*
  * DSA signing and verification
