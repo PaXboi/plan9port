@@ -24,7 +24,7 @@ case "$tag" in
 	extralibs="$extralibs -lutil"
 	nmflags="-B"
 	;;
-*Linux*|*Cygwin*)
+*Linux*|*Cygwin*|*CYGWIN*)
 	ld="${CC9:-gcc} $CC9FLAGS"
 	userpath=true
 	extralibs="$extralibs -lutil -lresolv -lpthread"
